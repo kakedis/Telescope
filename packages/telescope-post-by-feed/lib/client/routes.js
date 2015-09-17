@@ -20,6 +20,7 @@ Meteor.startup(function () {
         Meteor.subscribe('categories')
       ];
     },
+	fastRender: true
     // template: 'feeds'
   });
 
