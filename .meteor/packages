@@ -43,3 +43,4 @@ telescope:update-prompt
 
 # my-custom-package
 meteorhacks:kadira
+meteorhacks:fast-render
