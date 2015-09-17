@@ -18,7 +18,7 @@ Template.posts_list_controller.onCreated(function () {
   instance.ready = new ReactiveVar(false);
 
   // if caching is set to true, use Subs Manager. Else use template.subscribe. Default to false
-  var enableCache = (typeof instance.data.terms.enableCache === "undefined") ? false : instance.data.terms.enableCache;
+  var enableCache = (typeof instance.data.terms.enableCache === "undefined") ? true : instance.data.terms.enableCache;
   var subscriber = enableCache ? Telescope.subsManager : instance;
 
   // enable not subscribing to users on a per-controller basis
