@@ -17,24 +17,18 @@ Meteor.publish('postsList', function(terms) {
 
 Meteor.publish('postsListUsers', function(terms) {
   if(Users.can.viewById(this.userId)){
-    var parameters = Posts.getSubParams(terms);
-    parameters.options.fields = {'commenters': 1};
+    var parameters = Posts.getSubParams(terms),
+        posts = Posts.find(parameters.find, parameters.options),
+        userIds = _.pluck(posts.fetch(), 'userId');
 
-    //for each post, add first four commenter's userIds to userIds array
-    var userIds = {};
-    Posts.find(parameters.find, parameters.options).forEach(function (post) {
-      userIds[post.userId] = true;
-      if (post.commenters) {
-        comms = _.first(post.commenters, 4);
-        if (comms) {
-          for (var i = 0, L = comms.length; i < L; i++) {
-            userIds[comms[i]] = true;
-          }
-        }
-      }
+    // for each post, add first four commenter's userIds to userIds array
+    posts.forEach(function (post) {
+      userIds = userIds.concat(_.first(post.commenters,4));
     });
 
-    return Meteor.users.find({_id: {$in: _.keys(userIds)}}, {fields: Users.pubsub.avatarProperties});
+    userIds = _.unique(userIds);
+
+    return Meteor.users.find({_id: {$in: userIds}}, {fields: Users.pubsub.avatarProperties, multi: true});
   }
   return [];
 });
