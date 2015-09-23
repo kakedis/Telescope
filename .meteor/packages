@@ -43,5 +43,7 @@ telescope:update-prompt
 
 # my-custom-package
 meteorhacks:kadira
-meteorhacks:fast-render
 meteorhacks:subs-manager
+msavin:mongol
+fastclick
+meteorhacks:fast-render
