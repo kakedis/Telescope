@@ -63,23 +63,10 @@ Template.posts_list_controller.onCreated(function () {
     // console.log("ready: ", subscriptionsReady);
     // Tracker.onInvalidate(console.trace.bind(console));
 
-    var subsManagerReady = false;
-    if (enableCache) {
-      subsManagerReady = Telescope.subsManager.ready;
-    } else {
-      subsManagerReady = true;
-    }
-
-    instance.ready.set(false);
-
     // if subscriptions are ready, set terms to subscriptionsTerms
-    if (subscriptionsReady && subsManagerReady) {
+    if (subscriptionsReady) {
       instance.terms.set(subscriptionTerms);
-      Tracker.afterFlush(function(){
-        instance.ready.set(true);
-      });
-    } else {
-      instance.ready.set(false);
+      instance.ready.set(true);
     }
   
   });
