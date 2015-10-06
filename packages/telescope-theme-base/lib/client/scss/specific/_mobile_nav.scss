@@ -22,6 +22,8 @@ $mobile-nav-width: 200px;
   box-shadow: inset -3px 0px 7px black(0.5);
   z-index: 100;
 
+  -webkit-transform: translateZ(0);
+
   left: -$mobile-nav-width;
   left: calc((100% - 60px) * -1);
   width: $mobile-nav-width;
