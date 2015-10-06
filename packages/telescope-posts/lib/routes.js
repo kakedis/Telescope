@@ -4,6 +4,14 @@
  */
 Posts.controllers = {};
 
+Meteor.startup(function () {
+  if (Meteor.isServer) {
+    FastRender.onAllRoutes(function(){
+      this.subscribe('postsList', {view: 'top', limit: 20, enableCache: true});
+    });
+  }
+});
+
 /**
  * Controller for all posts lists
  */

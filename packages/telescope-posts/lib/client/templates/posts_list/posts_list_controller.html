@@ -1,3 +1,7 @@
 <template name="posts_list_controller">
-  {{> Template.dynamic template=template data=data}}
+  {{#unless data.postsReady}}
+    {{> loading}}
+  {{else}}
+    {{> Template.dynamic template=template data=data}}
+  {{/unless}}
 </template>

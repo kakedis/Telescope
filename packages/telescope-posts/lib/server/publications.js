@@ -4,8 +4,18 @@ Posts._ensureIndex({"status": 1, "postedAt": 1});
 
 Meteor.publish('postsList', function(terms) {
   if(Users.can.viewById(this.userId)){
-    var parameters = Posts.getSubParams(terms),
-        posts = Posts.find(parameters.find, parameters.options);
+    var parameters = Posts.getSubParams(terms);
+
+    // rude hack: excluding some unnecessary fields from the published documents. Not part of Telescope Core!
+    // 2015-10-07 00:08 - @author Daniel Dornhardt <daniel@dornhardt.com>
+    parameters.options.fields = {
+      body: 0,
+      feedId: 0,
+      feedItemId: 0,
+      htmlBody: 0
+    };
+
+    var posts = Posts.find(parameters.find, parameters.options);
 
     return posts;
   }
