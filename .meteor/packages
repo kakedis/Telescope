@@ -17,7 +17,6 @@ telescope:daily # singleday
 telescope:datetimepicker
 telescope:debug
 telescope:email
-telescope:embedly
 telescope:getting-started
 telescope:invites
 telescope:kadira
@@ -45,5 +44,5 @@ telescope:update-prompt
 # my-custom-package
 meteorhacks:kadira
 meteorhacks:subs-manager
-fastclick
 meteorhacks:fast-render
+telescope:embedly
